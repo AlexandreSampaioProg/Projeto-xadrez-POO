@@ -30,9 +30,8 @@ public class Posicao {
     }
 
     @Override //método para imprimir a posição na tela do usuario 
-    public String toString(){
+    public String toString() {
         return linha + ", " + coluna;
     }
-    
-    
+
 }
