@@ -29,7 +29,7 @@ public class PartidadeXadrez {
     
     private void posicaoDefalt(){
         tabuleiro.colocarPeca(new Torre(Cor.PRETA, tabuleiro), new Posicao(0, 0));
-        tabuleiro.colocarPeca(new Rei(Cor.PRETA, tabuleiro), new Posicao(0, 4));
+        tabuleiro.colocarPeca(new Rei(Cor.PRETA, tabuleiro), new Posicao(8, 8));
     }
     
 }
