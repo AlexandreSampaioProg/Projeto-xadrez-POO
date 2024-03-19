@@ -1,6 +1,7 @@
 
 package xadrez;
 
+import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.Pecas.Rei;
@@ -28,8 +29,11 @@ public class PartidadeXadrez {
     }
     
     private void posicaoDefalt(){
-        tabuleiro.colocarPeca(new Torre(Cor.PRETA, tabuleiro), new Posicao(0, 0));
-        tabuleiro.colocarPeca(new Rei(Cor.PRETA, tabuleiro), new Posicao(8, 8));
+        colocarUmaNovaPeca('a', 1,new Rei(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('b', 2, new Torre(Cor.PRETA, tabuleiro));
     }
     
+    private void colocarUmaNovaPeca(char coluna, int linha, XadrezPeca peca){
+           tabuleiro.colocarPeca(peca,new XadrezPosicao(coluna, linha).toPosicao());
+    }    
 }
