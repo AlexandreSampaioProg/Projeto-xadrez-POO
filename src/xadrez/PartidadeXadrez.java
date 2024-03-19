@@ -30,7 +30,12 @@ public class PartidadeXadrez {
     
     private void posicaoDefalt(){
         colocarUmaNovaPeca('a', 1,new Rei(Cor.PRETA, tabuleiro));
-        colocarUmaNovaPeca('b', 2, new Torre(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('b', 2, new Torre(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('c', 1,new Rei(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('d', 2, new Torre(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('f', 1,new Rei(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('g', 2, new Torre(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('h', 1,new Rei(Cor.PRETA, tabuleiro));    
     }
     
     private void colocarUmaNovaPeca(char coluna, int linha, XadrezPeca peca){
