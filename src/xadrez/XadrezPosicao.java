@@ -28,11 +28,11 @@ public class XadrezPosicao {
     }
 
     protected XadrezPosicao daPosicao(Posicao posicao) {
-        return new XadrezPosicao((char)('a' - posicao.getColuna()), 8 - posicao.getLinha());                    
+        return new XadrezPosicao((char) ('a' - posicao.getColuna()), 8 - posicao.getLinha());
     }
-    
+
     @Override
-    public String toString(){
-    return "" + coluna + linha; //concatenar as Strings se retirar o "" o compilador não irá aceitar imprimir a linha e a coluna
-}
+    public String toString() {
+        return "" + coluna + linha; //concatenar as Strings se retirar o "" o compilador não irá aceitar imprimir a linha e a coluna
+    }
 }
