@@ -21,11 +21,13 @@ public class Program {
                 System.out.println();
                 System.out.println("Posicao inicial: ");
                 XadrezPosicao atual = IU.readXadrezPosicao(sc);
-
+                boolean[][] movimentoPossiveis = partidaprincipal.movimentoPossiveis(atual);
+                IU.clearScreen();
+                IU.imprimirTabuleiro(partidaprincipal.getPecas(), movimentoPossiveis);
                 System.out.println();
                 System.out.println("Posicao final: ");
                 XadrezPosicao destino = IU.readXadrezPosicao(sc);
-
+                
                 XadrezPeca pecaCapturada = partidaprincipal.movimentacao(atual, destino);
             } catch (ExecaoDoXadrez e) {
                 System.out.println(e.getMessage());

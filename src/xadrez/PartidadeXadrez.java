@@ -45,7 +45,13 @@ public class PartidadeXadrez {
         Peca pecaCapturada = fazerMovimento(atual, destino);
         return (XadrezPeca) pecaCapturada;
     }
-
+    
+    public boolean[][] movimentoPossiveis(XadrezPosicao posicaoAtual){
+        Posicao posicao = posicaoAtual.toPosicao();
+        validarPosicaoAtual(posicao);
+        return tabuleiro.peca(posicao).movimentosPossiveis();
+    } 
+    
     private Peca fazerMovimento(Posicao atual, Posicao destino) {
         Peca p = tabuleiro.removerPeca(atual);
         Peca pecaCapturada = tabuleiro.removerPeca(destino);
