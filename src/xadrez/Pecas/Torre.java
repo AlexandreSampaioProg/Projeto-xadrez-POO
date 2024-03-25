@@ -66,5 +66,5 @@ public class Torre extends xadrez.XadrezPeca {
         }
         return mat;
     }
-
+        
 }
