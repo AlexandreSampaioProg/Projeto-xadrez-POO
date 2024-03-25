@@ -40,7 +40,8 @@ public class PartidadeXadrez {
     public XadrezPeca movimentacao(XadrezPosicao posicaoAtual, XadrezPosicao posicaoDeDestino) {
         Posicao atual = posicaoAtual.toPosicao();
         Posicao destino = posicaoDeDestino.toPosicao();
-        validarPosicao(atual);
+        validarPosicaoAtual(atual);
+        validarPosicaoDeDestino(atual,destino);
         Peca pecaCapturada = fazerMovimento(atual, destino);
         return (XadrezPeca) pecaCapturada;
     }
@@ -52,12 +53,22 @@ public class PartidadeXadrez {
         return pecaCapturada;
     }
 
-    private void validarPosicao(Posicao posicao) {
+    private void validarPosicaoAtual(Posicao posicao) {
         if (!tabuleiro.temUmaPeca(posicao)) {
             throw new ExecaoDoXadrez("não há peça nessa posicao");
         }
+        if (!tabuleiro.peca(posicao).temPossibilidadeDeMovimentacao()) {
+            throw new  ExecaoDoXadrez("Não há movimentações possiveis");
+        }
     }
 
+    private void validarPosicaoDeDestino(Posicao atual, Posicao destino){
+        if (!tabuleiro.peca(atual).movimentoPossivel(destino)) {
+            throw new ExecaoDoXadrez("A peca não pode ir para esse destino");
+        }
+    }
+    
+    
     private void colocarUmaNovaPeca(char coluna, int linha, XadrezPeca peca) {
         tabuleiro.colocarPeca(peca, new XadrezPosicao(coluna, linha).toPosicao());
     }
