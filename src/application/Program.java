@@ -17,7 +17,7 @@ public class Program {
         while (true) {
             try {
                 IU.clearScreen();
-                IU.imprimirTabuleiro(partidaprincipal.getPecas());
+                IU.imprimirPartida(partidaprincipal);
                 System.out.println();
                 System.out.println("Posicao inicial: ");
                 XadrezPosicao atual = IU.readXadrezPosicao(sc);
