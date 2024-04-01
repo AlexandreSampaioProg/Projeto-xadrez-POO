@@ -17,7 +17,7 @@ public class Torre extends xadrez.XadrezPeca {
 
     @Override
     public boolean[][] movimentosPossiveis() {
-        boolean[][] mat = new boolean[getTabuleiro().getColunas()][getTabuleiro().getColunas()];
+        boolean[][] mat = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
 
         Posicao p = new Posicao(0, 0);
 
@@ -27,7 +27,6 @@ public class Torre extends xadrez.XadrezPeca {
             mat[p.getLinha()][p.getColuna()] = true;
             p.setLinha(p.getLinha() - 1);
         }
-
         if (getTabuleiro().posicaoExiste(p) && temUmaPecaInimiga(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
@@ -41,6 +40,7 @@ public class Torre extends xadrez.XadrezPeca {
 
         if (getTabuleiro().posicaoExiste(p) && temUmaPecaInimiga(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
+
         }
 
         //direita
@@ -66,5 +66,5 @@ public class Torre extends xadrez.XadrezPeca {
         }
         return mat;
     }
-        
+
 }

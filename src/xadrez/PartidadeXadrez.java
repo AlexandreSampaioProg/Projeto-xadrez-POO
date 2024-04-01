@@ -1,5 +1,7 @@
 package xadrez;
 
+import java.util.ArrayList;
+import java.util.List;
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
@@ -11,6 +13,9 @@ public class PartidadeXadrez {
     private int turno;
     private Cor jogadorAtual;
     private Tabuleiro tabuleiro;
+    
+    private List<Peca> pecasNoTabuleiro = new ArrayList<>();
+    private List<Peca> pecasCapturadas = new ArrayList<>();
 
     public PartidadeXadrez() {
         tabuleiro = new Tabuleiro(8, 8);
@@ -44,8 +49,8 @@ public class PartidadeXadrez {
         colocarUmaNovaPeca('b', 2, new Torre(Cor.BRANCA, tabuleiro));
         colocarUmaNovaPeca('c', 1, new Rei(Cor.PRETA, tabuleiro));
         colocarUmaNovaPeca('d', 2, new Torre(Cor.BRANCA, tabuleiro));
-        colocarUmaNovaPeca('f', 1, new Rei(Cor.PRETA, tabuleiro));
-        colocarUmaNovaPeca('g', 2, new Torre(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('f', 1, new Torre(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('g', 1, new Torre(Cor.BRANCA, tabuleiro));
         colocarUmaNovaPeca('h', 1, new Rei(Cor.PRETA, tabuleiro));
     }
 
@@ -69,6 +74,10 @@ public class PartidadeXadrez {
         Peca p = tabuleiro.removerPeca(atual);
         Peca pecaCapturada = tabuleiro.removerPeca(destino);
         tabuleiro.colocarPeca(p, destino);
+        if (pecaCapturada != null) {
+            pecasNoTabuleiro.remove(pecaCapturada);
+            pecasCapturadas.add(pecaCapturada);
+        }
         return pecaCapturada;
     }
 
@@ -97,5 +106,6 @@ public class PartidadeXadrez {
 
     private void colocarUmaNovaPeca(char coluna, int linha, XadrezPeca peca) {
         tabuleiro.colocarPeca(peca, new XadrezPosicao(coluna, linha).toPosicao());
+        pecasNoTabuleiro.add(peca);
     }
 }
