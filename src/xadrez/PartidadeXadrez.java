@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.Pecas.Bispo;
 import xadrez.Pecas.Peao;
 import xadrez.Pecas.Torre;
 import xadrez.Pecas.Rei;
@@ -80,6 +81,12 @@ public class PartidadeXadrez {
         
         colocarUmaNovaPeca('a', 8,new Torre(Cor.PRETA, tabuleiro));
         colocarUmaNovaPeca('h', 8,new Torre(Cor.PRETA, tabuleiro));
+        
+        colocarUmaNovaPeca('c', 8,new Bispo(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('f', 8,new Bispo(Cor.PRETA, tabuleiro));
+        
+        colocarUmaNovaPeca('c', 1,new Bispo(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('f', 1,new Bispo(Cor.BRANCA, tabuleiro));
         
         colocarUmaNovaPeca('e', 8, new Rei(Cor.PRETA, tabuleiro));
         

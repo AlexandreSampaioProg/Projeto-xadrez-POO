@@ -3,16 +3,17 @@ package xadrez.Pecas;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.Cor;
+import xadrez.XadrezPeca;
 
-public class Torre extends xadrez.XadrezPeca {
+public class Bispo extends XadrezPeca {
 
-    public Torre(Cor cor, Tabuleiro tabuleiro) {
+    public Bispo(Cor cor, Tabuleiro tabuleiro) {
         super(cor, tabuleiro);
     }
 
     @Override
     public String toString() {
-        return "T";
+        return "B";
     }
 
     @Override
@@ -21,43 +22,42 @@ public class Torre extends xadrez.XadrezPeca {
 
         Posicao p = new Posicao(0, 0);
 
-        //Acima
-        p.setValores(posicao.getLinha() - 1, posicao.getColuna());
+        //diagonal esquerda
+        p.setValores(posicao.getLinha() - 1, posicao.getColuna() - 1);
         while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
-            p.setLinha(p.getLinha() - 1);
+            p.setValores(p.getLinha() - 1, p.getColuna() - 1);
         }
         if (getTabuleiro().posicaoExiste(p) && temUmaPecaInimiga(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
 
-        //esquerda
-        p.setValores(posicao.getLinha(), posicao.getColuna() - 1);
+        //diagonal direita
+        p.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
         while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
-            p.setColuna(p.getColuna() - 1);
+            p.setValores(p.getLinha() - 1, p.getColuna() + 1);
+        }
+        if (getTabuleiro().posicaoExiste(p) && temUmaPecaInimiga(p)) {
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
+
+        //sudeste
+        p.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
+        while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
+            mat[p.getLinha()][p.getColuna()] = true;
+            p.setValores(p.getLinha() + 1, p.getColuna() + 1);
         }
 
         if (getTabuleiro().posicaoExiste(p) && temUmaPecaInimiga(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
 
-        //direita
-        p.setValores(posicao.getLinha(), posicao.getColuna() + 1);
+        //sudoeste
+        p.setValores(posicao.getLinha() + 1, posicao.getColuna() - 1);
         while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
-            p.setColuna(p.getColuna() + 1);
-        }
-
-        if (getTabuleiro().posicaoExiste(p) && temUmaPecaInimiga(p)) {
-            mat[p.getLinha()][p.getColuna()] = true;
-        }
-
-        //baixo
-        p.setValores(posicao.getLinha() + 1, posicao.getColuna());
-        while (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temUmaPeca(p)) {
-            mat[p.getLinha()][p.getColuna()] = true;
-            p.setLinha(p.getLinha() + 1);
+            p.setValores(p.getLinha() + 1, p.getColuna() - 1);
         }
 
         if (getTabuleiro().posicaoExiste(p) && temUmaPecaInimiga(p)) {
@@ -65,4 +65,5 @@ public class Torre extends xadrez.XadrezPeca {
         }
         return mat;
     }
+
 }
