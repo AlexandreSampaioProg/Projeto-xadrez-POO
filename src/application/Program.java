@@ -10,14 +10,15 @@ import xadrez.XadrezPeca;
 import xadrez.XadrezPosicao;
 
 public class Program {
-
+    
     public static void main(String[] args) {
-
+        
         Scanner sc = new Scanner(System.in);
         PartidadeXadrez partidaprincipal = new PartidadeXadrez();
         List<XadrezPeca> capturadas = new ArrayList<>();
 
-        while (true) {
+        //VOCE CRIOU O OBJETO PARTIDA DE XADREZ COMO PARTIDA PRINCIPAL O ANIMAL DE TETA ENTÃO SE FOR CHAMAR ALGUM METODO DA PARTIDA DE XADREZ USA A PARTIDA PRINCIPAL ANIMAL
+        while (!partidaprincipal.getCheckMate()) {
             try {
                 IU.clearScreen();
                 IU.imprimirPartida(partidaprincipal, capturadas);
@@ -40,12 +41,12 @@ public class Program {
             } catch (ExecaoDoXadrez e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
-            }
-            catch(InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
             }
         }
-
+        IU.clearScreen();
+        IU.imprimirPartida(partidaprincipal, capturadas);
     }
 }

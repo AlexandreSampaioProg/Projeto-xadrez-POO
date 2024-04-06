@@ -35,7 +35,6 @@ public class IU {
         System.out.flush();
     }
 
-    
     public static XadrezPosicao readXadrezPosicao(Scanner sc) {
         try {
             String s = sc.nextLine();
@@ -46,17 +45,23 @@ public class IU {
             throw new InputMismatchException("Erro ao ler a posição, selecione uma posição valida");
         }
     }
-    
-    public static void imprimirPartida(PartidadeXadrez partidadeXadrez, List<XadrezPeca> capturadas){
+
+    public static void imprimirPartida(PartidadeXadrez partidadeXadrez, List<XadrezPeca> capturadas) {
         imprimirTabuleiro(partidadeXadrez.getPecas());
         System.out.println();
         mostrarPecasCapturadas(capturadas);
         System.out.println();
         System.out.println("Turno: " + partidadeXadrez.getTurno());
-        System.out.println("Esperando jogador: " + partidadeXadrez.getJogadorAtual());
-        if (partidadeXadrez.getCheck()) {
-            System.out.println("CHECK!");
+        if (!partidadeXadrez.getCheckMate()) {
+            System.out.println("Esperando jogador: " + partidadeXadrez.getJogadorAtual());
+            if (partidadeXadrez.getCheck()) {
+                System.out.println("CHECK!");
+            }
+        } else {
+            System.out.println("CHECKMATE!");
+            System.out.println("GANHADOR: " + partidadeXadrez.getJogadorAtual());
         }
+
     }
 
     public static void imprimirTabuleiro(XadrezPeca[][] pecas) {
@@ -87,8 +92,8 @@ public class IU {
         }
         System.out.print(" ");
     }
-    
-     public static void imprimirTabuleiro(XadrezPeca[][] pecas, boolean[][] movimentoPossiveis) {
+
+    public static void imprimirTabuleiro(XadrezPeca[][] pecas, boolean[][] movimentoPossiveis) {
         for (int i = 0; i < pecas.length; i++) {
             System.out.print((8 - i) + " ");
             for (int j = 0; j < pecas.length; j++) {
@@ -98,18 +103,18 @@ public class IU {
         }
         System.out.println("  a b c d e f g h");
     }
-     
-     private static void mostrarPecasCapturadas(List<XadrezPeca> capturadas){
-         List<XadrezPeca> branca = capturadas.stream().filter(x -> x.getCor() == Cor.BRANCA).collect(Collectors.toList());
-         List<XadrezPeca> preta = capturadas.stream().filter(x -> x.getCor() == Cor.PRETA).collect(Collectors.toList());
-         System.out.println();
-         System.out.println("Pecas capturadas");
-         System.out.println("Brancas:");
-         System.out.print(ANSI_WHITE);
-         System.out.println(branca.toString());
-         System.out.print(ANSI_RESET);
-         System.out.println("Pretas:");
-         System.out.print(ANSI_YELLOW);
-         System.out.println(preta.toString());
-     }
+
+    private static void mostrarPecasCapturadas(List<XadrezPeca> capturadas) {
+        List<XadrezPeca> branca = capturadas.stream().filter(x -> x.getCor() == Cor.BRANCA).collect(Collectors.toList());
+        List<XadrezPeca> preta = capturadas.stream().filter(x -> x.getCor() == Cor.PRETA).collect(Collectors.toList());
+        System.out.println();
+        System.out.println("Pecas capturadas");
+        System.out.println("Brancas:");
+        System.out.print(ANSI_WHITE);
+        System.out.println(branca.toString());
+        System.out.print(ANSI_RESET);
+        System.out.println("Pretas:");
+        System.out.print(ANSI_YELLOW);
+        System.out.println(preta.toString());
+    }
 }
