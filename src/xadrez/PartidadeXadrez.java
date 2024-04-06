@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.Pecas.Peao;
 import xadrez.Pecas.Torre;
 import xadrez.Pecas.Rei;
 
@@ -56,10 +57,33 @@ public class PartidadeXadrez {
     }
 
     private void posicaoDefalt() {
-        colocarUmaNovaPeca('g', 6, new Torre(Cor.BRANCA, tabuleiro));
-        colocarUmaNovaPeca('g', 7, new Torre(Cor.BRANCA, tabuleiro));
-        colocarUmaNovaPeca('h', 1, new Rei(Cor.PRETA, tabuleiro));
-        colocarUmaNovaPeca('h', 8, new Rei(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('a', 2,new Peao(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('b', 2,new Peao(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('c', 2,new Peao(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('d', 2,new Peao(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('e', 2,new Peao(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('f', 2,new Peao(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('g', 2,new Peao(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('h', 2,new Peao(Cor.BRANCA, tabuleiro));
+        
+        colocarUmaNovaPeca('a', 7,new Peao(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('b', 7,new Peao(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('c', 7,new Peao(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('d', 7,new Peao(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('e', 7,new Peao(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('f', 7,new Peao(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('g', 7,new Peao(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('h', 7,new Peao(Cor.PRETA, tabuleiro));
+        
+        colocarUmaNovaPeca('h', 1, new Torre(Cor.BRANCA, tabuleiro));
+        colocarUmaNovaPeca('a', 1, new Torre(Cor.BRANCA, tabuleiro));
+        
+        colocarUmaNovaPeca('a', 8,new Torre(Cor.PRETA, tabuleiro));
+        colocarUmaNovaPeca('h', 8,new Torre(Cor.PRETA, tabuleiro));
+        
+        colocarUmaNovaPeca('e', 8, new Rei(Cor.PRETA, tabuleiro));
+        
+        colocarUmaNovaPeca('e', 1, new Rei(Cor.BRANCA, tabuleiro));
         
     }
 
@@ -91,9 +115,10 @@ public class PartidadeXadrez {
     }
 
     private Peca fazerMovimento(Posicao atual, Posicao destino) {
-        Peca p = tabuleiro.removerPeca(atual);
+        XadrezPeca p = (XadrezPeca)tabuleiro.removerPeca(atual); //downcasting
+        p.aumentarContadorDeMovimento();               
         Peca pecaCapturada = tabuleiro.removerPeca(destino);
-        tabuleiro.colocarPeca(p, destino);
+        tabuleiro.colocarPeca(p, destino); //upcasting
         if (pecaCapturada != null) {
             pecasNoTabuleiro.remove(pecaCapturada);
             pecasCapturadas.add(pecaCapturada);
@@ -102,7 +127,8 @@ public class PartidadeXadrez {
     }
 
     private void desfazerMovimento(Posicao atual, Posicao destino, Peca pecaCapturada) {
-        Peca p = tabuleiro.removerPeca(destino);
+        XadrezPeca p = (XadrezPeca)tabuleiro.removerPeca(destino);
+        p.diminuirContadorDeMovimento();
         tabuleiro.colocarPeca(p, atual);
         if (pecaCapturada != null) {
             tabuleiro.colocarPeca(pecaCapturada, destino);
