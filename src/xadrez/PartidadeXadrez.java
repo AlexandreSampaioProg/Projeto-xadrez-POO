@@ -8,6 +8,7 @@ import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.Pecas.Bispo;
 import xadrez.Pecas.Peao;
+import xadrez.Pecas.Rainha;
 import xadrez.Pecas.Torre;
 import xadrez.Pecas.Rei;
 
@@ -92,6 +93,9 @@ public class PartidadeXadrez {
         
         colocarUmaNovaPeca('e', 1, new Rei(Cor.BRANCA, tabuleiro));
         
+        colocarUmaNovaPeca('d', 8, new Rainha(Cor.PRETA, tabuleiro));
+        
+        colocarUmaNovaPeca('d', 1, new Rainha(Cor.BRANCA, tabuleiro));
     }
 
     public XadrezPeca movimentacao(XadrezPosicao posicaoAtual, XadrezPosicao posicaoDeDestino) {
