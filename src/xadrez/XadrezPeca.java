@@ -10,10 +10,7 @@ public abstract class XadrezPeca extends Peca {
 
     private Cor cor;
     private int contadorDeMovimento;
-   
-    
-    
-    
+
     public XadrezPeca(Cor cor, Tabuleiro tabuleiro) {
         super(tabuleiro);
         this.cor = cor;

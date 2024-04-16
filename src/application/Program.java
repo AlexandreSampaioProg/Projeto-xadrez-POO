@@ -38,6 +38,12 @@ public class Program {
                     capturadas.add(pecaCapturada);
                 }
                 
+                if (partidaprincipal.getpromocao() != null) {
+                    System.out.println("qual a peca para promocao? (C,B,T,R)");
+                    String tipo = sc.nextLine();
+                    partidaprincipal.recolocarPecaPromovida(tipo);
+                }
+                
             } catch (ExecaoDoXadrez e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
